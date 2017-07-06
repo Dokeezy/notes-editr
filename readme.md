@@ -1,3 +1,1 @@
-# Boilerplate Meteor Project
-
-This includes a basic react and auth setup.
+# Welcome to my humble editor 
