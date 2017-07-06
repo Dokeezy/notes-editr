@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
+import { Session } from "meteor/session";
 
 import Signup from '../ui/Signup';
 import Dashboard from '../ui/Dashboard';
