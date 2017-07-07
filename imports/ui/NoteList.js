@@ -1,31 +1,32 @@
-import React from "react";
-import { Meteor } from "meteor/meteor";
-import { createContainer } from "meteor/react-meteor-data";
-import { Session } from "meteor/session";
+import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { createContainer } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 
-import {Notes} from "../api/notes";
-import NoteListHeader from "./NoteListHeader";
-import NoteListItem from "./NoteListItem";
-import NoteListEmptyItem from "./NoteListEmptyItem";
+import { Notes } from '../api/notes';
+import NoteListHeader from './NoteListHeader';
+import NoteListItem from './NoteListItem';
+import NoteListEmptyItem from './NoteListEmptyItem';
 
 export const NoteList = (props) => {
-  return(
-    <div>
+  return (
+    <div className="item-list">
       <NoteListHeader/>
-      {props.notes.length === 0 ? <NoteListEmptyItem/> : undefined}
-      {props.notes.map(note => {
-          return <NoteListItem key={note._id} note={note}/>;
-        })}
+      { props.notes.length === 0 ? <NoteListEmptyItem/> : undefined }
+      {props.notes.map((note) => {
+        return <NoteListItem key={note._id} note={note}/>;
+      })}
     </div>
   );
 };
 
-NodeList.propTypes = {
+NoteList.propTypes = {
   notes: React.PropTypes.array.isRequired
-}
+};
 
 export default createContainer(() => {
   const selectedNoteId = Session.get('selectedNoteId');
+
   Meteor.subscribe('notes');
 
   return {
@@ -37,7 +38,7 @@ export default createContainer(() => {
       return {
         ...note,
         selected: note._id === selectedNoteId
-      }
+      };
     })
   };
 }, NoteList);
